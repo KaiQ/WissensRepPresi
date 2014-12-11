@@ -1,0 +1,188 @@
+% http://www2.informatik.hu-berlin.de/~mischulz/beamer.html
+%
+% Erzeugung: latex, latex, dvi2ps, viewps
+%
+%\documentclass[notes,xcolor=dvipsnames,14pt]{beamer}
+\documentclass[xcolor=dvipsnames,12pt,aspectratio=43]{beamer}
+\usepackage{etex}
+\usenavigationsymbolstemplate{}
+\usepackage{pgfpages}
+%\pgfpagesuselayout{resize to}[a4paper,border shrink=5mm,landscape]
+\usecolortheme[named=Gray]{structure}
+% {Apricot | Aquamarine | Bittersweet | Black | Blue | BlueGreen | BlueViolet | BrickRed | Brown | BurntOrange | CadetBlue | CarnationPink | Cerulean | CornowerBlue | Cyan | Dandelion | DarkOrchid | Emerald | ForestGreen | Fuchsia | Goldenrod | Gray | Green | GreenYellow | JungleGreen | Lavender | LimeGreen | Magenta | Mahogany | Maroon | Melon | MidnightBlue | Mulberry | NavyBlue | OliveGreen | Orange | OrangeRed | Orchid | Peach | Periwinkle | PineGreen | Plum | ProcessBlue | Purple | RawSienna | Red | RedOrange | RedViolet | Rhodamine | aRoyalBlue | RoyalPurple | RubineRed | Salmon | SeaGreen | Sepia | SkyBlue | SpringGreen | Tan | TealBlue | Thistle | Turquoise | Violet | VioletRed | White | WildStrawberry | Yellow | YellowGreen | YellowOrange}
+\usepackage{floatflt}
+\usepackage{wrapfig}
+%\usepackage{beamerthemesplit} % kam neu dazu
+\usepackage{eurosym}
+
+%\usepackage[utf8x]{inputenc}
+\usepackage[ngerman]{babel}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage{colortbl}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+%-------------------------------------------------------------------
+% Zeichnen der Diagramme
+\usepackage{tikz}
+\usepackage{pgfplots} % LaTeX
+%\usemodule[pgfplots] % ConTeXt
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes,arrows,positioning}
+%\usetikzlibrary{graphdrawing}
+\usetikzlibrary{graphs}
+\usetikzlibrary{trees}
+\tikzstyle{selected}=[draw=red,fill=red!30]
+\tikzstyle{optional}=[dashed,fill=gray!50]
+\usepackage{verbatim}
+\usepackage{amssymb}
+\usepackage{ulem}
+\usepackage{fancybox}
+
+\tikzstyle{decision} = [diamond, draw, fill=gray!50,text width=4.5em,
+text centered,node distance=3cm, inner sep=0pt]
+%\tikzstyle{block} = [rectangle, draw, fill=gray!30,text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{block} = [rectangle, draw, fill=gray!30, text centered, rounded corners, minimum height=2.5em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=gray!10,minimum height=4em]
+\tikzstyle{io} =  [draw,trapezium,trapezium left angle=70,trapezium right angle=-70,minimum height=2.5em, fill=gray!70]
+\tikzstyle{prozess} = [draw,rectangle split, rectangle split horizontal,rectangle split parts=3,minimum height=4em , node distance=3cm, fill=gray!90 ]
+
+
+%-------------------------------------------------------------------Captions
+
+% \usepackage[small, bf, format=hang]{caption}
+\usepackage[babel,german=guillemets]{csquotes}
+% \renewcommand{\captionfont}{\tiny}
+% \captionsetup[figure]{labelfont=bf,textfont=it, labelfont={color=gray}}
+% \captionsetup[table]{labelfont=bf,textfont=it, labelfont={color=gray}}
+%------------------------------------------------------------------------------
+%\usepackage{graphicx}
+%\usepackage{epsfig}
+
+\usepackage{graphicx}
+%\usepackage{graphics}
+%\usepackage{epsf}
+%\usepackage{epsfig}
+
+\definecolor{violett}{rgb}{0.800,0.2,0.850}
+\definecolor{lightBlue}{rgb}{0,0.4,0.7}
+\definecolor{darkGreen}{rgb}{0.0,0.6,0.0}
+
+% \usetheme{Antibes}      % schlichte gerade ecken, sehr dezent
+% \usetheme{Berlin}       % kein groeßerer unterschied zu Antibes
+% \usetheme{boxes}        % kein groeßerer unterschied zu Antibes
+% \usetheme{default}      % kein groeßerer unterschied zu Antibes
+% \usetheme{Dresden}      % kein groeßerer unterschied zu Antibes
+% \usetheme{Luebeck}      % kein groeßerer unterschied zu Antibes
+% \usetheme{Malmoe}       % kein groeßerer unterschied zu Antibes
+% \usetheme{Montpellier}  % kein groeßerer unterschied zu Antibes
+% \usetheme{Pittsburgh}   % kein groeßerer unterschied zu Antibes
+% \usetheme{Rochester}    % kein groeßerer unterschied zu Antibes
+% \usetheme{Szeged}       % kein groeßerer unterschied zu Antibes
+% \usetheme{Bergen}       % Tehmen leiste links, als großer balken
+% \usetheme{Berkeley}     % Navigations leiste am linken rand, sauber und uebersichtlich
+% \usetheme{Boadilla}     % klares aussehen, ohne leisten oben
+% \usetheme{CambridgeUS}  % 3D ausehen
+% \usetheme{Copenhagen}   % 3D ausehen ohne schatten
+% \usetheme{Darmstadt}    % 3D ausehen
+% \usetheme{Frankfurt}    % 3D ausehen
+% \usetheme{AnnArbor}     % 3D ausehen
+% \usetheme{Ilmenau}      % 3D ausehen ohne schatten runde ecken
+% \usetheme{JuanLesPins}  % 3D ausehen
+% \usetheme{Madrid}       % 3D ausehen, ohne leiste oben
+% \usetheme{PaloAlto}     % 3D ausehen Navigationsleiste links
+% \usetheme{Warsaw}       % 3D ausehen
+% \usetheme{Goettingen}   % Schlicht Navigationsleiste rechts.
+% \usetheme{Hannover}     % Navigations leiste am linken rand, sauber und uebersichtlich
+% \usetheme{Marburg}      % Schlicht Navigationsleiste rechts.
+% \usetheme{Singapore}    % schlicht, Titel mittig zentriert, aufgeraeumt
+
+%\usetheme[headheight=1cm,footheight=3cm]{boxes}
+\usetheme{Frankfurt}
+
+
+% Hier wird eine mögliche Variante verwendet.
+
+% outer-color-themes: Namen von Seetieren: whale, seahorse, dolphin
+\usecolortheme{dolphin}    % .., weiß, grau
+% \usecolortheme{albatross}  % .., blau, dunkelblau
+% \usecolortheme{beaver}     % weißer hintergrund, roter titel, grau unten
+% \usecolortheme{beetle}     % .., grau, blau
+% \usecolortheme{crane}      % weißer hintergrund, gelbe kaesten
+% \usecolortheme{default}    % .., weiß, grau
+% \usecolortheme{dove}       % weiß
+% \usecolortheme{fly}        % grau
+% \usecolortheme{lily}       % .., weiß, grau
+% \usecolortheme{orchid}     % .., weiß, grau
+% \usecolortheme{rose}       % .., weiß, grau
+% \usecolortheme{seagull}    % .., weiß, grau
+% \usecolortheme{seahorse}   % .., weiß, grau
+% \usecolortheme{sidebartab} % .., weiß, grau
+% \usecolortheme{structure}  % .., weiß, grau
+% \usecolortheme{whale}      % .., weiß, grau
+%\usecolortheme{wolverine}   % weiß, gelb, blau
+
+% inner-color-themes: Namen von Blumen: lily, orchid, rose
+\usecolortheme{dove}
+
+% Theme für Schriften - es gibt noch weitere
+%\usefonttheme{professionalfonts}
+\usefonttheme{professionalfonts}
+
+% inner-theme
+%\useinnertheme{default}
+\useinnertheme{rectangles}
+
+
+% outer-theme
+%\useoutertheme{infolines}
+%\useoutertheme{smoothbars}
+%\useoutertheme{miniframes}
+
+\setbeamertemplate{footline}
+{%
+  \begin{beamercolorbox}[wd=1\textwidth,ht=3ex,dp=1.5ex,leftskip=.5em,rightskip=.5em]{author in head/foot}%
+    \usebeamerfont{author in head/foot}%
+\hfill\insertframenumber%
+  \end{beamercolorbox}%
+%\vspace*{-4.5ex}\hspace*{0.5\textwidth}%
+%\begin{beamercolorbox}[wd=0.5\textwidth,ht=3ex,dp=1.5ex,left,leftskip=.5e m]{title in head/foot}%
+%\usebeamerfont{title in head/foot}%
+%\insertshorttitle%
+%\end{beamercolorbox}%
+}
+
+
+\newcommand{\Name}[1]{\textit{\glqq#1\grqq}}
+
+% \setbeamertemplate{frametitle}
+% {
+%   \vskip-0.25\beamer@headheight
+%   \vskip-\baselineskip
+%   \vskip-0.2cm
+%   \hskip0.7cm\usebeamerfont*{frametitle}\insertframetitle
+%   \vskip-0.10em
+%   \hskip0.7cm\usebeamerfont*{framesubtitle}\insertframesubtitle
+% }
+
+
+%\usepackage{pgfpages}
+%\setbeameroption{show notes on second screen}
+
+\title{Preferences in answer set programming}
+\author{Andreas Haselhuhn, Kai Trott}
+\institute[UNI]{Universität Leipzig}
+%\date{\today}
+
+
+\begin{document}
+\frame{\titlepage}
+\include{einleitung}
+\include{fixpoints}
+\include{order}
+\include{preference}
+\include{relationships}
+\end{document}
+
