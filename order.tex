@@ -1,0 +1,27 @@
+\section{Compiling order preservation}
+
+\begin{frame}
+  \begin{itemize}
+    \item "Ubersetzung von geordneten logischen Programmen $\Pi$ zu standard logischen Programmen $\Pi'$
+    \item akzeptiert nur Antworten von $\Pi$ die $order~preserving$ sind
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{\textbf{Define:} $order~preserving$}
+    Let $(\Pi, <)$ be a statically ordered program and
+    let $X$ be an answer set of $\Pi$.
+    Then, $X$ is called <-preserving, if there exists an enumer-
+    ation $(r_i)_{i \in I}~of~\Gamma^{X}_{\Pi}$  such that for every $i, j \in I$ we have that:
+    \begin{enumerate}
+      \item $body^+(r') \subseteq \{head(r_j)~|~j < i\};~and$
+      \item $if~r_i < r_j,~then~j < i;~and$
+      \item $if~r_i < r',~and~r' \in \Pi\setminus\Gamma^{X}_{\Pi},~then$
+        \begin{itemize}
+          \item[(a)] $body^+(r') \nsubseteq X~or$
+          \item[(b)] $body^-(r') \cap \{head(r_j)~|~j < i\} \neq \emptyset$
+        \end{itemize}
+    \end{enumerate}
+  \end{block}
+\end{frame}

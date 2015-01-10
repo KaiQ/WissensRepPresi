@@ -1,96 +1,114 @@
-
+\section{Einleitung}
 
 \begin{frame}
-  Betrachtung von 3 Herangehensweisen f"ur Logik Programme mit Präferenzen
+  Betrachtung von 3 Herangehensweisen f"ur ``Logik Programme mit Präferenzen''
   \begin{itemize}
-    \item Preferred alternating fixpoints
-    \item Compiling order preservation
+    \item preferred alternating fixpoints
+    \item compiling order preservation
     \item translations into standard logic programs
   \end{itemize}
 \end{frame}
 
 
 \begin{frame}{Logisches Programm}
-  Ein Logisches Programm ist eine Endliche Ansamlung von Regeln in der Form:
+  Ein ``general logic program'' ist eine Endliche Ansamlung von Regeln in der Form:
+  \begin{figure}
+    \begin{math}
+      A_0~\leftarrow~A_1,~...,~A_m,~not~A_{m+1},~...,~not~A_n
+    \end{math}
+  \end{figure}
+  bei dem gilt $n~\geq~m~\geq~0$\\[0.5cm]
+  und jedes $A_i$ ist ein Atom.
+\end{frame}
+
+
+\begin{frame}{Erweitertes Logisches Programm}
+  Ein ``extended logic program'' ist eine Endliche Ansamlung von Regeln in der Form:
   \begin{figure}
     \begin{math}
       L_0~\leftarrow~L_1,~...,~L_m,~not~L_{m+1},~...,~not~L_n
     \end{math}
   \end{figure}
   bei dem gilt $n~\geq~m~\geq~0$\\[0.5cm]
-  und jedes $L_i (0 \leq i \leq n)$ ist ein Literal also ein Atom $A$ oder seine Negation $\neg A$.\\
+  und jedes $L_i$ ist ein Literal ($A$ oder $\neg A$).
 \end{frame}
+
+
+\begin{frame}{Negationen}
+  schwache Negation:
+  \begin{itemize}
+    \item $cross~\leftarrow~not~train$
+  \end{itemize}
+  starke Negation:
+  \begin{itemize}
+    \item $cross~\leftarrow~\neg~train$
+  \end{itemize}
+\end{frame}
+
 
 \begin{frame}{Definitionen}
   \begin{block}{\textbf{Define:} Lit}
-    Lit ist die Menge aller Literale.
+    Lit ist die Menge aller Literale des Programms $\Pi$.
+  \end{block}
+  \begin{block}{\textbf{Define:}~Regel}
+    $r = L_0~\leftarrow~L_1,~...,~L_m,~not~L_{m+1},~...,~not~L_n$
   \end{block}
   \begin{block}{\textbf{Define:}~$head$}
-  $head(r) = L_0$
+    $head(r) = L_0$
   \end{block}
   \begin{block}{\textbf{Define:}~$body$}
-  $body(r) = {L_1,~...,~L_m,~not~L_{m+1},~...,~not~L_n}$
+    $body(r) = {L_1,~...,~L_m,~not~L_{m+1},~...,~not~L_n}$
   \end{block}
 \end{frame}
 
 
 \begin{frame}{Definitionen}
   \begin{block}{\textbf{Define:}~$body^+$}
-  $body^+(r) = {L_1,~...,~L_m}$
+    $body^+(r) = {L_1,~...,~L_m}$
   \end{block}
   \begin{block}{\textbf{Define:}~$body^-$}
-  $body^-(r) = {not~L_{m+1},~...,~not~L_n}$
+    $body^-(r) = {not~L_{m+1},~...,~not~L_n}$
+  \end{block}
+  \begin{block}{\textbf{Define:} $basic$}
+    Ein Programm wird $basic$ genannt, wenn f"ur alle Regeln gilt:\\
+    $body^-(r)~=~\emptyset$
+  \end{block}
+  \begin{block}{\textbf{Define:} $ground$}
+    Eine Regel $r$ wird $ground$ genannt, wenn keine Variablen darin enthalten sind\\
   \end{block}
 \end{frame}
 
+
 \begin{frame}{Definitionen}
-  \begin{block}{\textbf{Define:} basic}
-    Ein Programm wird basic genannt, wenn f"ur alle Regeln gilt:\\
-    $body^-(r)~=~\emptyset$
-  \end{block}
-  \begin{block}{\textbf{Define:} reduct of rule r}
+  \begin{block}{\textbf{Define:} $reduct$ von r}
     $r^+~=~head(r)~\rightarrow~body^+(r)$
   \end{block}
-  \begin{block}{\textbf{Define:} reduct of program $\Pi$ to a set X of literals}
+  \begin{block}{\textbf{Define:} $reduct$ von $\Pi$}
+    $\Pi$ in relation zu $X$. $X$ ist eine Menge von Literalen\\
     $\Pi^X~=\{r^+~|~r \in \Pi~and~body^-(r) \cap X = \emptyset \}$
   \end{block}
 \end{frame}
 
 
 \begin{frame}{Definitionen}
-  \begin{block}{\textbf{Define:} }
-    $body^-(r)~=~\emptyset$
+  \begin{block}{\textbf{Define:} $logically~closed$}
+    We say that $X$ is logically closed iff it is either consistent or equals Lit.
+  \end{block}
+  \begin{block}{\textbf{Define:} $closed~under~a~basic~program$}
+    A set of literals $X$ is closed under a basic program $\Pi$ iff for
+    any $r~\in~\Pi$, $head(r)~\in~X$ whenever $body^+(r) \subseteq X$.
   \end{block}
 \end{frame}
-%A set of literals X is closed under a basic program Π iff for
-%any r ∈ Π, head (r) ∈ X whenever body + (r) ⊆ X. We say
-%that X is logically closed iff it is either consistent (ie. it does
-%not contain both a literal A and its negation ¬A) or equals
-%Lit. The smallest set of literals which is both logically closed
-%and closed under a basic program Π is denoted by Cn
 
 
-
-
-
-
-Our investigation adopts characterization techniques found in
-the same literature in order to shed light on the relationships
-among these approaches. This provides us with different
-characterizations in terms of (i) fixpoints, (ii) order preser-
-vation, and (iii) translations into standard logic programs.
-
-While the two former provide semantics for logic program-
-ming with preference information, the latter furnishes im-
-plementation techniques for these approaches.
-
-(i) may
-be regarded as a meta-level description of the corresponding
-construction process.
-
-One may view (ii) as the most seman-
-tical characterization because it tells us which “models” of
-the original program are selected by the respective preference
-handling strategy.
+\begin{frame}{Definitionen}
+  \begin{block}{\textbf{Define:} Operator $Cn(\Pi)$}
+  $Cn(\Pi)$ bezeichnet die kleinste Menge von Literalen die sowohl
+  $logically~closed$, als auch $closed~under~a~basic~program~\Pi$ ist
+  \end{block}
+  \begin{block}{\textbf{Define:} $answer~set$}
+    $Cn(\Pi^X)=X$
+  \end{block}
+\end{frame}
 
 
