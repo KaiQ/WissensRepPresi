@@ -9,7 +9,7 @@
 
 
 \begin{frame}
-  \begin{block}{\textbf{Define:} $order~preserving$}
+  \begin{block}{\textbf{Definition 2:}}
     Let $(\Pi, <)$ be a statically ordered program and
     let $X$ be an answer set of $\Pi$.
     Then, $X$ is called <-preserving, if there exists an enumer-
@@ -23,5 +23,28 @@
           \item[(b)] $body^-(r') \cap \{head(r_j)~|~j < i\} \neq \emptyset$
         \end{itemize}
     \end{enumerate}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{\textbf{Definition 3:}}
+    Let $\Pi = \{r1, ..., r_k\}$ be a dynamically ordered logic program over $L$.
+    Then, the logic program $T(\Pi)$ over $L^+$ is defined as
+    $T(\Pi) = U_{r \in \Pi^T}(r)$, where $\tau(r)$ consists of the following rules,
+    for $L^+ \in body^+(r)$, $L^- \in body^-(r)$, and $r'$, $r'' \in \Pi$:
+    \tiny
+    \begin{itemize}
+      \item[] $a1(r)$:~~~~~~~~~~~~~~~~~~~$head(r)~\leftarrow~ap(n_r)$
+      \item[] $a2(r)$:~~~~~~~~~~~~~~~~~~~~$ap(n_r)~\leftarrow~ok(n_r),~body(r)$
+      \item[] $b_1(r,L^+)$:~~~~~~~~~~~~~~~$bl(n_r)~\leftarrow~ok(n_r),~not~L^+$
+      \item[] $b_2(r,L^-)$:~~~~~~~~~~~~~~~$bl(n_r)~\leftarrow~ok(n_r),~L^-$
+      \item[] $c_1(r)$:~~~~~~~~~~~~~~~~~~~~~$ok(n_r)~\leftarrow~ok'(n_r, n_{r_1}), ..., ok'(n_r, n_{r_k})$
+      \item[] $c_2(r, r')$:~~~~~~~~$ok'(n_r, n_{r'})~\leftarrow~not~(n_r \prec n_{r'})$
+      \item[] $c_3(r, r')$:~~~~~~~~$ok'(n_r, n_{r'})~\leftarrow~(n_r \prec n_{r'}), ap(n_{r'})$
+      \item[] $c_4(r, r')$:~~~~~~~~$ok'(n_r, n_{r'})~\leftarrow~(n_r \prec n_{r'}), bl(n_{r'})$
+      \item[] $t(r, r', r'')$:~~~~~~~~$n_r \prec n_{r''}~\leftarrow~n_r \prec n_{r'}, n_{r'} \prec n_{r''})$
+      \item[] $as(r, r')$:~~~~~~~$\neg(n_{r'} \prec n_{r})~\leftarrow~n_r \prec n_{r'}$
+    \end{itemize}
   \end{block}
 \end{frame}

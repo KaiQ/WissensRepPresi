@@ -1,0 +1,20 @@
+\section{fixpoint}
+
+\begin{frame}
+  \begin{block}{\textbf{Definition 1:}}
+    Let $(\Pi, <)$ be an ordered
+    logic program and let $X$ be a set of literals. We define
+    \begin{itemize}
+      \item $X_0 = \emptyset$~~~and for $i \geq 0$
+      \item $X_{i+1} = X_i \cup \{head(r)~|~$
+          \begin{itemize}
+            \item[I.] $r \in \Pi$ is active wrt $(X_i, X)$ and
+            \item[II.] there is no rule $r' \in \Pi$ with $r < r'$ such that
+              \begin{itemize}
+                \item[(a)] $r'$ is active wrt $(X, X_i) and$
+                \item[(b)] $head(r') \notin X_i$
+              \end{itemize}
+          \end{itemize}
+      \end{itemize}
+    \end{block}
+  \end{frame}
