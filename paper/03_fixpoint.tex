@@ -1,13 +1,15 @@
 \section{Alternating Fixpoints}
 
-Die Notation von Answer Sets (ohne Präferenzen) basiert auf
-der Reduktion von erweiterten logischen programmen auf basic Programme.
+Die Notation von \emph{Answer Sets} (ohne Präferenzen) basiert auf
+der Reduktion von erweiterten logischen Programmen auf \emph{basic} Programme.
 Dadurch ist es jedoch nicht mehr möglich einen Konflikt zu berücksichtigen,
 da alle Konflikte simultan gelöst werden beim überführen von $\Pi$ zu $\Pi^X$.
 Das lösen von Konflikten muss daher anhand der ursprünglichen Regeln Geschehen
 um Blockaden innerhalb der Reglen berücksichtigen zu können.
 Ohne den Nagativen Teil $body^-(r)$ kann nicht mehr nachgewiesen werden, ob
-$head(r') \in body^-(r)$ im Fall von $r < r'$ hält.
+$head(r') \in body^-(r)$ im Fall von $r < r'$ hält.\\
+Ein Ansatz hierfür wurde von \cite{wang2000alternating} verfolgt.
+Dieser beruht auf dem Konzept von \emph{active}.\\
 
 \begin{definition}
   Let $(\Pi, <)$ be an ordered logic program and let $X$ be a set of literals.
@@ -32,4 +34,9 @@ $head(r') \in body^-(r)$ im Fall von $r < r'$ hält.
   consistent. \\Otherwise, $C_{(\Pi, <)}(X) = Lit$.
 \end{definition}
 
-Text nachher Lorem ipsum...
+Die grundlegende Idee daran ist es eine Regel $r$ nur dann anzuwenden, wenn alle
+existierenden höherwärtigen Regeln $r'$ schon auf Anwendbarkeit geprüft wurden.
+Dies ist dann zutreffend wenn die Vorraussetzungen derer nicht erfüllbar sind, also
+$body(r') \not\subseteq X$, oder $r'$ wird durch ein schon abgeleitetes blockiert
+$body^-(r) \cap X_i \neq \emptyset$, oder $r'$ beziehungsweise eine andere Regel mit
+dem selben Kopf wurde bereits angewandt $head(r') \in X_i$.
