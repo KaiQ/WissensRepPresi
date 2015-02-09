@@ -1,1 +1,35 @@
 \section{Alternating Fixpoints}
+
+Die Notation von Answer Sets (ohne Präferenzen) basiert auf
+der Reduktion von erweiterten logischen programmen auf basic Programme.
+Dadurch ist es jedoch nicht mehr möglich einen Konflikt zu berücksichtigen,
+da alle Konflikte simultan gelöst werden beim überführen von $\Pi$ zu $\Pi^X$.
+Das lösen von Konflikten muss daher anhand der ursprünglichen Regeln Geschehen
+um Blockaden innerhalb der Reglen berücksichtigen zu können.
+Ohne den Nagativen Teil $body^-(r)$ kann nicht mehr nachgewiesen werden, ob
+$head(r') \in body^-(r)$ im Fall von $r < r'$ hält.
+
+\begin{definition}
+  Let $(\Pi, <)$ be an ordered logic program and let $X$ be a set of literals.
+  We define:\\
+  \begin{equation*}
+    \begin{split}
+      X_0 & = \emptyset\hspace*{0.3cm} \text{~and for~} i \geq 0 \\
+      X_{i+1} & = X_i \cup \{ head(r)~| \\
+        & \hspace*{0.4cm}\left. \begin{aligned}
+          I. &\hspace*{0.2cm} r \in \Pi \text{~is active wrt~} (X_i, X) \text{~and} \\
+          II. &\hspace*{0.2cm} \text{there is no rule~} r' \in \Pi \text{~with~} r < r'
+          \text{~such that} \\
+          & \hspace*{0.2cm} \begin{aligned}
+            (a) &\hspace*{0.2cm} r' \text{~is active wrt~} (X, X_i) \text{~and} \\
+            (b) &\hspace*{0.2cm} head(r') \notin X_i
+          \end{aligned}
+        \end{aligned}
+      \right \}
+    \end{split}
+  \end{equation*}
+  Then, $C_{(\Pi, <)}(X) = \bigcup_{i\geq 0} X_i$ if $\bigcup_{i\geq 0} X_i$ is
+  consistent. \\Otherwise, $C_{(\Pi, <)}(X) = Lit$.
+\end{definition}
+
+Text nachher Lorem ipsum...
