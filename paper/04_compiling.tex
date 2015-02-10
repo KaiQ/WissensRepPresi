@@ -1,2 +1,38 @@
 \section{Compiling order preservation}
 
+
+\begin{itemize}
+  \item[0] $body^+(r_i) \subseteq \{ head(r_j)~|~j<i\}$ and \\
+  \item[1] if $r_i < r_j$, then $j<i$ and \\
+  \item[2] if $r_i < r'$ and $r' \in \Pi \backslash \Gamma_{\Pi}^X$, then
+    \begin{itemize}
+      \item[(a)] $body^+(r') \not \subseteq X$ or
+      \item[(b)] $body^-(r') \cap \{head(r_j)~|~j<i\} \not = \emptyset$
+    \end{itemize}
+\end{itemize}
+
+\begin{definition}
+  Let $\Pi = \{r_1, ..., r_k\}$ be a dynamically ordered logic program over $L$.
+  Then, the logic program $\Gamma(\Pi)$ over $L^+$ is defined as
+  $\Gamma(\Pi) = \bigcup_{r \in \Pi^\Gamma}(r)$, where $\Gamma(r)$ consists of the
+  following rules, for $L^+ \in body^+(r)$, $L^- \in body^-(r)$, and $r'$,
+  $r'' \in \Pi:$\\
+\begin{minipage}{0.8\textwidth}
+    \begin{align*}
+      a_1(r): && head(r) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} ap(n_r)\\
+      a_2(r): && ap(n_r) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} ok(n_r), body(r)\\
+      b_1(r, L^+): && bl(n_r) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} ok(n_r), not~L^+\\
+      b_2(r, L^-): && bl(n_r) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} ok(n_r), L^-\\
+      \\
+      c_1(r): && ok(n_r) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} ok'(n_r, n_{r_1}), ..., ok'(n_r, n_{r_k})\\
+      c_2(r, r'): && ok'(n_r, n_{r'}) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} not~(n_r \prec n_{r'})\\
+      c_3(r, r'): && ok'(n_r, n_{r'}) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} (n_r \prec n_{r'}), ap(n_{r'})\\
+      c_4(r, r'): && ok'(n_r, n_{r'}) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} (n_r \prec n_{r'}), bl(n_{r'})\\
+      \\
+      t(r, r', r''): && n_r \prec n_{r''} \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} n_r \prec n_{r'}, n_{r'} \prec n_{r''}\\
+      as(r, r'): && \neg (n_{r'} \prec n_{r}) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} n_r \prec n_{r'}
+    \end{align*}
+\end{minipage}
+\end{definition}
+
+
