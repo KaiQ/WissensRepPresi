@@ -1,15 +1,88 @@
 \section{Compiling order preservation}
 
+Eine Übersetzung eines geordneten logischen Programmes $(\Pi, <)$ in ein
+Standard logisches Programm $\Pi'$ wurde in \cite{delgrande2000logic} entwickelt.
+Dieser Vorgang stellt sicher, das die aus $\Pi'$ resultierenden \emph{answer sets}
+allen \emph{order preserving answer sets} von $\Pi$ entsprechen.
 
+\begin{definition}
+  Let $(\Pi, <)$ be a statically ordered program and let X be an answer set of $\Pi$.
+  Then, X is called <-preserving, if there exists an enumeration
+  $\langle r_i \rangle_{i \in I}$~of~$\Gamma_{\Pi}^X$ such that for every $i, j \in I$
+  we have that:
+  \begin{itemize}
+    \item[0] $body^+(r_i) \subseteq \{ head(r_j)~|~j<i\}$ and \\
+    \item[1] if $r_i < r_j$, then $j<i$ and \\
+    \item[2] if $r_i < r'$ and $r' \in \Pi \backslash \Gamma_{\Pi}^X$, then
+      \begin{itemize}
+        \item[(a)] $body^+(r') \not \subseteq X$ or
+        \item[(b)] $body^-(r') \cap \{head(r_j)~|~j<i\} \not = \emptyset$
+      \end{itemize}
+  \end{itemize}
+\end{definition}
+
+Die Bedingung 0 macht die Eigenschaft der \emph{groundedness} explizit.\\
+Bedingung 1 garantiert die Kompatibilität von $\langle r_i \rangle_{i \in I}$
+zu $<$.\\
+Bedingung 2 ist vergleichbar mit \emph{Condition II} aus Definition \ref{def:1}.
+Durch sie können höherwertige Reglen nie durch niederwertige Blockiert werden.\\
+Entsprechend \emph{Example} \ref{example:pi2} ist $X = \{p, b, \not f, w\}$ das
+einzige \emph{<-preserving} \emph{answer set} von $\Pi_2$. Es kann durch die 
+\emph{grounded} Sequenzen
+$\langle r_5, r_4, r_1, r_2 \rangle$ und $\langle r_5, r_1, r_4, r_2 \rangle$
+erzeugt werden, welche beide die Bedingungen 1 und 2 erfüllen.
+Die einzige \emph{grounded} Sequenz die $X' = \{p, b, f, w\}$ generiert,
+$\langle r_5, r_4, r_2, r_3 \rangle$, verletzt Bedingung 2b.
+Die entsprechende Übersetzung verbindet die Information der Ordnung
+mit dem logischen Programm über das spezielle Prädikaten Symbol $\prec$.
+Dies erlaubt ebenfalls eine Ordnung in einer Dynamischen Form.\\
+Ein logisches Programm über einer propositionalen Sprache $L$ ist genau
+dann dynamisch geordnet genannt, wenn $L$ die folgenden paarweisen disjunkten
+Kategorien beinhaltet:
 \begin{itemize}
-  \item[0] $body^+(r_i) \subseteq \{ head(r_j)~|~j<i\}$ and \\
-  \item[1] if $r_i < r_j$, then $j<i$ and \\
-  \item[2] if $r_i < r'$ and $r' \in \Pi \backslash \Gamma_{\Pi}^X$, then
-    \begin{itemize}
-      \item[(a)] $body^+(r') \not \subseteq X$ or
-      \item[(b)] $body^-(r') \cap \{head(r_j)~|~j<i\} \not = \emptyset$
-    \end{itemize}
+  \item[(i)]   eine Menge $N$, welche die Namen der Regeln beinhaltet
+  \item[(ii)]  eine Menge $At$ von Atomen eines Programmes
+  \item[(iii)] eine Menge $At_{\prec}$ von präferenz Atomen $s \prec t$,
+    wobei $s, t \in N$ Namen sind.
 \end{itemize}
+Für jedes Programm $\Pi$ existiert eine bijective Funktion $n(\cdot)$ welche jeder
+Regel $r \in \Pi$ einen Namen $n(r) \in N$ zuweist.
+Für eine vereinfachte Schreibweise wird $n_r$ anstatt $n(r)$ verwendet.
+Gegebenen falls auch $n_i$ statt $n_{r_i}$.\\
+Ein Atom $n_r \prec n_{r'} \in At_{\prec}$  lässt davon ausgehen, dass
+$r < r'$ gilt.
+Ein statisch geordnetes Programm $(\Pi, <)$ kann dem entsprechend durch ein
+Programm, welches präferenz Atome nur anhand derer Fakten beinhaltet,
+beschrieben werden. Die Schreibweise ist dann
+$\Pi \cup \{(n_r \prec n_{r'}) \leftarrow~|~r < r'\}$.\\
+Bei gegebenem $r < r'$ muss sichergestellt sein, das $r'$ vor $r$ berücksichtigt
+wird. In dem Sinne, das bei einem \emph{answer set} X vor dem anwenden der
+Regel $r$, zuerst die Regel $r'$ angewandt oder wiederlegt worden ist.
+Dies wird durch das umformen der Regeln erziehlt, so das die Reihenfolge
+der Anwendung der Regeln explizit kontrolliert werden kann.
+Dadurch verfällt die Notwendigkeit vor dem anwenden von Regeln zu prüfen,
+ob eine andere Regel vorher angewendet werden muss oder ungültig wird.
+Für eine Regel $r$ existieren zwei Möglichkeiten das sie nich angewendet werden
+müssen:
+\begin{itemize}
+  \item ein Literal aus $head^+(r)$ kommt nicht im \emph{answer set} vor, oder
+  \item ein Literal aus $head^-(r)$ ist im \emph{answer set}
+\end{itemize}
+Zum ausdrücken einer Blockierung für jeder Regel $r$ in dem gegebenen Programm $\Pi$
+wird ein neues Atom $bl(n_r)$ eingeführt.
+Vergleichsweise dazu wird das Atom $ap(n_r)$ eingeführt, um eine mögliche anwendung
+der Regel auszudrücken.
+Zur Kontrolle der Reihenfolge der Anwendung wird das Atom $ok(n_r)$ eingeführt.
+Unformell heißt dies das es dann \emph{ok} ist eine Regel $r$ anzuwenden, wenn
+es \emph{ok} ist in bezug auf jede höherwertige Regel $r'$.
+Dies ist dann der Fall, wenn die höherwertige Regel $r'$ blockiert oder angewandt
+wurde.\\
+Formal betrachtet, bei einem gegebenen dynamisch geordneten Programm $\Pi$ über $L$.
+
+
+
+
+
 
 \begin{definition}
   Let $\Pi = \{r_1, ..., r_k\}$ be a dynamically ordered logic program over $L$.
@@ -17,7 +90,7 @@
   $\Gamma(\Pi) = \bigcup_{r \in \Pi^\Gamma}(r)$, where $\Gamma(r)$ consists of the
   following rules, for $L^+ \in body^+(r)$, $L^- \in body^-(r)$, and $r'$,
   $r'' \in \Pi:$\\
-\begin{minipage}{0.8\textwidth}
+  \begin{minipage}{0.8\textwidth}
     \begin{align*}
       a_1(r): && head(r) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} ap(n_r)\\
       a_2(r): && ap(n_r) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} ok(n_r), body(r)\\
@@ -32,7 +105,7 @@
       t(r, r', r''): && n_r \prec n_{r''} \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} n_r \prec n_{r'}, n_{r'} \prec n_{r''}\\
       as(r, r'): && \neg (n_{r'} \prec n_{r}) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} n_r \prec n_{r'}
     \end{align*}
-\end{minipage}
+  \end{minipage}
 \end{definition}
 
 

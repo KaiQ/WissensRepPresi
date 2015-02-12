@@ -32,6 +32,7 @@ Dieser beruht auf dem Konzept von \emph{active}.\\
   \end{equation*}
   Then, $C_{(\Pi, <)}(X) = \bigcup_{i\geq 0} X_i$ if $\bigcup_{i\geq 0} X_i$ is
   consistent. \\Otherwise, $C_{(\Pi, <)}(X) = Lit$.
+  \label{def:1}
 \end{definition}
 
 Die grundlegende Idee daran ist es eine Regel $r$ nur dann anzuwenden, wenn alle
@@ -39,10 +40,18 @@ existierenden höherwärtigen Regeln $r'$ schon auf Anwendbarkeit geprüft wurde
 Dies ist dann zutreffend wenn die Vorraussetzungen derer nicht erfüllbar sind, also
 $body(r') \not\subseteq X$, oder $r'$ wird durch ein schon abgeleitetes blockiert
 $body^-(r) \cap X_i \neq \emptyset$, oder $r'$ beziehungsweise eine andere Regel mit
-dem selben Kopf wurde bereits angewandt $head(r') \in X_i$. \\
+dem selben Kopf wurde bereits angewandt $head(r') \in X_i$.\\
+Genau so wie $C_\Pi$ ist auch der Operator $C_{(\Pi, <)}$ nicht Monoton.
+Folglich wird für jedes Set $X \subseteq Lit$ die \emph{alternating transformation}
+der Form $(\Pi, <)$ als $A_{(\Pi, <)}(X) = C_{(\Pi, <)}(C_{(\Pi, <)}(X))$ definiert.
+Ein Fixpunkt von $A_{(\Pi, <)}$ wird als \emph{alternating fixpoint} von $(\Pi, <)$
+bezeichnet. Hierbei sei zu beachten, das $A_{(\Pi, <)}$ monoton ist.\\
 
-\begin{minipage}{0.8\textwidth}
-  \begin{example}
+
+
+Zur verdeutlichung steht das folgende Beispiel:\\
+  \begin{example}[$\Pi_2, <$]
+%\begin{minipage}{0.8\textwidth}
     \begin{align*}
       r_1: && \neg f \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm}p, not~f &  r_2 < r_1\\
       r_2: && w \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm}b, not~\neg w \\
@@ -50,8 +59,11 @@ dem selben Kopf wurde bereits angewandt $head(r') \in X_i$. \\
       r_4: && b \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm}p \\
       r_5: && p \hspace*{0.2cm}&\leftarrow
     \end{align*}
+    \label{example:pi2}
+%\end{minipage}
   \end{example}
-\end{minipage}
+
+
 
 \begin{align*}
   X_0 &= \emptyset           & X_0' &= \emptyset \\
