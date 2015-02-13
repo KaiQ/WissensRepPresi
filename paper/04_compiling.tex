@@ -77,12 +77,12 @@ Unformell heißt dies das es dann \emph{ok} ist eine Regel $r$ anzuwenden, wenn
 es \emph{ok} ist in bezug auf jede höherwertige Regel $r'$.
 Dies ist dann der Fall, wenn die höherwertige Regel $r'$ blockiert oder angewandt
 wurde.\\
-Formal betrachtet, bei einem gegebenen dynamisch geordneten Programm $\Pi$ über $L$.
-
-
-
-
-
+Formal betrachtet, bei einem gegebenen dynamisch geordneten Programm $\Pi$ über
+$L$, dann sei $L^+$ eine Sprache erreicht durch hinzufügen von, für alle
+$r, r' \in \Pi$, neuen paarweisen disjunkten propositionalen Atomen
+$ap(n_r)$, $bl(n_r)$, $ok(n_r)$ und $ok'(n_r, n_{r'})$.
+Dann stellt die Übersetzung $\Gamma$ ein geordnetes Programm $\Pi$ über $L$ in
+ein Standard Programm $\Gamma(\Pi)$ über $L^+$ wie folgt dar.
 
 \begin{definition}
   Let $\Pi = \{r_1, ..., r_k\}$ be a dynamically ordered logic program over $L$.
