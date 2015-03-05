@@ -86,8 +86,8 @@ ein Standard Programm $\Gamma(\Pi)$ über $L^+$ wie folgt dar.
 
 \begin{definition}
   Let $\Pi = \{r_1, ..., r_k\}$ be a dynamically ordered logic program over $L$.
-  Then, the logic program $\Gamma(\Pi)$ over $L^+$ is defined as
-  $\Gamma(\Pi) = \bigcup_{r \in \Pi^\Gamma}(r)$, where $\Gamma(r)$ consists of the
+  Then, the logic program $\mathcal{T}(\Pi)$ over $L^+$ is defined as
+  $\mathcal{T}(\Pi) = \bigcup_{r \in \Pi}\tau(r)$, where $\tau(r)$ consists of the
   following rules, for $L^+ \in body^+(r)$, $L^- \in body^-(r)$, and $r'$,
   $r'' \in \Pi:$\\
   \begin{minipage}{0.8\textwidth}
@@ -107,5 +107,25 @@ ein Standard Programm $\Gamma(\Pi)$ über $L^+$ wie folgt dar.
     \end{align*}
   \end{minipage}
 \end{definition}
+
+Sollte $\Pi'$ ein dynamisch geordnetes Programm sein welches $(\Pi, <)$ umfasst,
+so wird $\Gamma(\Pi, <)$ als Schreibweise gegenüber $\Gamma(\Pi')$ vorgezogen.\\
+Die ersten vier Regeln von $\tau(r)$ stellen die Anwendungen und Blockierungen
+der originalen Regeln dar.\\
+Die zweite Gruppe an Regeln bildet die Präferenz verarbeitung. Hierbei
+quantifiziert $c_1(r)$ über die Regeln in $\Pi$. Dies ist notwendig bei der
+handhabung von dynamischen Präferenzen, denn diese können stark von dem
+dazugehörigen Answer Set abhängen.
+Die drei Regeln $c_2(r, r')$, $c_3(r, r')$ und $c_4(r, r')$ spezifizieren die
+paarweise Abhängigkeit von von Regeln in betracht auf die gegebene
+Präferenzordnung. Für jedes Paar an Regeln $r, r'$ mit $n_r \prec n_{r'}$ wird
+$ok'(n_r, n_{r'})$ erreicht, immer dann wenn $n_r \prec n_{r'}$ nicht hält oder
+wenn entweder $ap(n_{r'})$ oder $bl(n_{r'})$ war ist. Dies erlaubt es $ok(n_r)$
+abzuleiten, hinweisend darauf das $r$ möglicherweise anwendbar ist, immer dann
+wenn für alle $r'$ mit $n_r \prec n_{r'}$, $r'$ schon angewendet wurde oder
+nicht anwendbar ist.\\
+Es ist wichtig zu vermerken, dass dies nur eine von vielen Möglichkeiten ist
+um mit Präferenzen umzugehen. Andere Herangehensweisen können durch das ändern
+von $ok(\cdot)$ und $ok'(\cdot, \cdot)$ erziehlt werden.
 
 
