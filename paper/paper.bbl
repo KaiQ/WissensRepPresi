@@ -1,0 +1,28 @@
+\begin{thebibliography}{1}
+
+\bibitem{SchaubWang}
+Schaub, T., Wang, K.:
+\newblock A comparativ study of logic programs with preference
+
+\bibitem{wang2000alternating}
+Wang, K., Zhou, L., Lin, F.:
+\newblock Alternating fixpoint theory for logic programs with priority.
+\newblock In: Computational Logic—CL 2000.
+\newblock Springer (2000)
+
+\bibitem{delgrande2000logic}
+Delgrande, J.P., Schaub, T., Tompits, H.:
+\newblock Logic programs with compiled preferences.
+\newblock arXiv preprint cs/0003028 (2000)
+
+\bibitem{BrewkaEiter1999}
+Brewka, G., Eiter, T.:
+\newblock Preferred answer sets for extended logic programs.
+\newblock (1999)
+
+\bibitem{BrewkaEiter2000}
+Brewka, G., Eiter, T.:
+\newblock Intellectics and computational logic.
+\newblock (2000)
+
+\end{thebibliography}

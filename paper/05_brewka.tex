@@ -1,2 +1,60 @@
 \section{Brewka and Eiter's concept of preference}
 
+
+Ein weiterer Ansatz wurde von \cite{BrewkaEiter1999} vorgestellt. Wir nennen ein solches Answer-Set $B-preferred$. Dieser Ansatz unterschiedet sich erheblich an zwei verschiedenen Stellen von den beiden erstgenannten Ansätzen. Erstens das erstellen des Answer-Sets wird gesondert vom überprüfen der Bevorzugung betrachtet.
+Zweitens werden Regeln, die zu mutmaßlich kontraintuitiven Ergebnissen führen würden, ausdrücklich vom Inferenzprozeß entfernt. Dies wurde explizit in \cite{BrewkaEiter2000}, durch den folgenden Filter, definiert. \\
+
+\begin{center}
+	$Z_x(\Pi)~=~\Pi~\textbackslash~\{~r~\in~\Pi~|~head(r)~\in~X,~body^-(r)~\cap~X~\neq~\emptyset \}$\\
+\end{center}
+\begin{flushright}
+  (B1)
+\end{flushright}
+
+Als nächstes wird definiert das jedes $B-preferred$ Answer-Set von $\Pi$ auch ein Answer-Set von $Z_X(\Pi)$ ist. Jetzt wollen wir eine fixpoint-Charakterisierung der $B-preference$ geben.\\
+
+\begin{definition}
+  Let $(\Pi, <)$ be an ordered logic program and let $X$ be a set of literals.
+  We define:
+  \begin{equation*}
+    \begin{split}
+      X_0 & = \emptyset\hspace*{0.3cm} \text{~and for~} i \geq 0 \\
+      X_{i+1} & = X_i \cup \{ head(r)~| \\
+        & \hspace*{0.4cm}\left. \begin{aligned}
+          I. &\hspace*{0.2cm} r \in \Pi \text{~is active wrt~} (X, X) \text{~and} \\
+          II. &\hspace*{0.2cm} \text{there is no rule~} r' \in \Pi \text{~with~} r < r'
+          \text{~such that} \\
+          & \hspace*{0.2cm} \begin{aligned}
+            (a) &\hspace*{0.2cm} r' \text{~is active wrt~} (X, X_i) \text{~and} \\
+            (b) &\hspace*{0.2cm} head(r') \notin X_i
+          \end{aligned}
+        \end{aligned}
+      \right \}
+    \end{split}
+  \end{equation*}
+  Then, $C^{B}_{(\Pi, <)}(X) = \bigcup_{i\geq 0} X_i$ if $\bigcup_{i\geq 0} X_i$ is
+  consistent. \\Otherwise, $C_{(\Pi, <)}(X) = Lit$.
+  \label{def:1}
+\end{definition}
+
+Der Unterschied dieser Definition und der vorangegangen Definitionen manifestieren sich im Punkt ``I.''. Hier wird die Aktivität (activ) auf $(X,X)$ anstatt auf $(X_i,X)$ überprüft. Durch dieses Kriterium sind im Programm ($\Pi_2$) jetzt beide Answer-Sets $B-prefered$ aber $\{p,~b,~\neg f,~w\}$ ist das einzige $W-$ und $D-preferred$ Answer-Set.\\
+
+Um dies etwas besser darzustellen, zeigen wir das die $B-preference$ auch in der order preservation Notation dargestellt werden kann. Diese würde der folgenden Definition entsprechen.\\
+
+\begin{definition}
+  Let $(\Pi, <)$ be a statically ordered lprogram and let X be an answer set of $\Pi$.
+  Then, X is called $<^B$-preserving, if there exists an enumeration
+  $\langle r_i \rangle_{i \in I}$~of~$\Gamma_{\Pi}^X$ such that, for every $i, j \in I$
+  we have that:
+  \begin{itemize}
+		\item[1.] if $r_i < r_j$, then $j<i$ and \\
+    \item[2.] if $r_i < r'$ and $r' \in \Pi \backslash \Gamma_{\Pi}^X$, then
+      \begin{itemize}
+        \item[(a)] $body^+(r') \not \subseteq X$ or
+        \item[(b)] $body^-(r') \cap \{head(r_j)~|~j<i\} \not = \emptyset$
+				\item[(c)] $head(r') \in X.$
+      \end{itemize}
+  \end{itemize}
+\end{definition}
+
+Diese Definition unterscheidet sich in zwei Punkten von seinen Vorangegangen. Der erste Punkt ist das Fehlen des Punkte ``0.''. Dieser würde die ``groundedness'' beschreiben. Dies zeigt sich auch in der vorangegangen Definition an der Benutzung von $(X,X)$. Der zweite Unterschied ist die Eigenschaft ``2.(c)'', die hin zugekommen ist. Diese stellt die Filterung der Elemente in (B1) dar.
