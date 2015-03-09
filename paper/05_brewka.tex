@@ -4,12 +4,10 @@
 Ein weiterer Ansatz wurde von \cite{BrewkaEiter1999} vorgestellt. Wir nennen ein solches Answer-Set $B-preferred$. Dieser Ansatz unterschiedet sich erheblich an zwei verschiedenen Stellen von den beiden erstgenannten Ansätzen. Erstens das erstellen des Answer-Sets wird gesondert vom überprüfen der Bevorzugung betrachtet.
 Zweitens werden Regeln, die zu mutmaßlich kontraintuitiven Ergebnissen führen würden, ausdrücklich vom Inferenzprozeß entfernt. Dies wurde explizit in \cite{BrewkaEiter2000}, durch den folgenden Filter, definiert. \\
 
-\begin{center}
-	$Z_x(\Pi)~=~\Pi~\textbackslash~\{~r~\in~\Pi~|~head(r)~\in~X,~body^-(r)~\cap~X~\neq~\emptyset \}$\\
-\end{center}
-\begin{flushright}
-  (B1)
-\end{flushright}
+  \begin{equation}
+	Z_x(\Pi)~=~\Pi~\textbackslash~\{~r~\in~\Pi~|~head(r)~\in~X,~body^-(r)~\cap~X~\neq~\emptyset \}
+  \label{eq:1}
+\end{equation}
 
 Als nächstes wird definiert das jedes $B-preferred$ Answer-Set von $\Pi$ auch ein Answer-Set von $Z_X(\Pi)$ ist. Jetzt wollen wir eine fixpoint-Charakterisierung der $B-preference$ geben.\\
 
@@ -37,7 +35,7 @@ Als nächstes wird definiert das jedes $B-preferred$ Answer-Set von $\Pi$ auch e
   \label{def:1}
 \end{definition}
 
-Der Unterschied dieser Definition und der vorangegangen Definitionen manifestieren sich im Punkt ``I.''. Hier wird die Aktivität (activ) auf $(X,X)$ anstatt auf $(X_i,X)$ überprüft. Durch dieses Kriterium sind im Programm ($\Pi_2$) jetzt beide Answer-Sets $B-prefered$ aber $\{p,~b,~\neg f,~w\}$ ist das einzige $W-$ und $D-preferred$ Answer-Set.\\
+Der Unterschied dieser Definition und der vorangegangen Definitionen manifestieren sich im Punkt \glqq I.\grqq. Hier wird die Aktivität (activ) auf $(X,X)$ anstatt auf $(X_i,X)$ überprüft. Durch dieses Kriterium sind im Programm ($\Pi_2$) jetzt beide Answer-Sets $B-prefered$ aber $\{p,~b,~\neg f,~w\}$ ist das einzige $W-$ und $D-preferred$ Answer-Set.\
 
 Um dies etwas besser darzustellen, zeigen wir das die $B-preference$ auch in der order preservation Notation dargestellt werden kann. Diese würde der folgenden Definition entsprechen.\\
 
@@ -57,4 +55,9 @@ Um dies etwas besser darzustellen, zeigen wir das die $B-preference$ auch in der
   \end{itemize}
 \end{definition}
 
-Diese Definition unterscheidet sich in zwei Punkten von seinen Vorangegangen. Der erste Punkt ist das Fehlen des Punkte ``0.''. Dieser würde die ``groundedness'' beschreiben. Dies zeigt sich auch in der vorangegangen Definition an der Benutzung von $(X,X)$. Der zweite Unterschied ist die Eigenschaft ``2.(c)'', die hin zugekommen ist. Diese stellt die Filterung der Elemente in (B1) dar.
+Diese Definition unterscheidet sich in zwei Punkten von seinen Vorangegangen.
+Der erste Punkt ist das Fehlen des Punkte \glqq 0.\grqq.
+Dieser würde die \glqq groundedness\grqq~ beschreiben.
+Dies zeigt sich auch in der vorangegangen Definition an der Benutzung von $(X,X)$.
+Der zweite Unterschied ist die Eigenschaft \glqq 2.(c)\grqq~, die
+hinzugekommen ist. Diese stellt die Filterung der Elemente in \eqref{eq:1} dar.

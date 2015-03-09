@@ -7,13 +7,13 @@ allen \emph{order preserving answer sets} von $\Pi$ entsprechen.
 
 \begin{definition}
   Let $(\Pi, <)$ be a statically ordered program and let X be an answer set of $\Pi$.
-  Then, X is called <-preserving, if there exists an enumeration
+  Then, X is called $<$-preserving, if there exists an enumeration
   $\langle r_i \rangle_{i \in I}$~of~$\Gamma_{\Pi}^X$ such that for every $i, j \in I$
   we have that:
   \begin{itemize}
-    \item[0] $body^+(r_i) \subseteq \{ head(r_j)~|~j<i\}$ and \\
-    \item[1] if $r_i < r_j$, then $j<i$ and \\
-    \item[2] if $r_i < r'$ and $r' \in \Pi \backslash \Gamma_{\Pi}^X$, then
+    \item[0.] $body^+(r_i) \subseteq \{ head(r_j)~|~j<i\}$ and \\
+    \item[1.] if $r_i < r_j$, then $j<i$ and \\
+    \item[2.] if $r_i < r'$ and $r' \in \Pi \backslash \Gamma_{\Pi}^X$, then
       \begin{itemize}
         \item[(a)] $body^+(r') \not \subseteq X$ or
         \item[(b)] $body^-(r') \cap \{head(r_j)~|~j<i\} \not = \emptyset$
@@ -26,8 +26,8 @@ Bedingung 1 garantiert die Kompatibilität von $\langle r_i \rangle_{i \in I}$
 zu $<$.\\
 Bedingung 2 ist vergleichbar mit \emph{Condition II} aus Definition \ref{def:1}.
 Durch sie können höherwertige Reglen nie durch niederwertige Blockiert werden.\\
-Entsprechend \emph{Example} \ref{example:pi2} ist $X = \{p, b, \not f, w\}$ das
-einzige \emph{<-preserving} \emph{answer set} von $\Pi_2$. Es kann durch die 
+Entsprechend \emph{Example} \ref{example:pi2} ist $X = \{p, b, \neg f, w\}$ das
+einzige \emph{$<$-preserving} \emph{answer set} von $\Pi_2$. Es kann durch die 
 \emph{grounded} Sequenzen
 $\langle r_5, r_4, r_1, r_2 \rangle$ und $\langle r_5, r_1, r_4, r_2 \rangle$
 erzeugt werden, welche beide die Bedingungen 1 und 2 erfüllen.
@@ -114,10 +114,10 @@ Die ersten vier Regeln von $\tau(r)$ stellen die Anwendungen und Blockierungen
 der originalen Regeln dar.\\
 Die zweite Gruppe an Regeln bildet die Präferenz verarbeitung. Hierbei
 quantifiziert $c_1(r)$ über die Regeln in $\Pi$. Dies ist notwendig bei der
-handhabung von dynamischen Präferenzen, denn diese können stark von dem
+Handhabung von dynamischen Präferenzen, denn diese können stark von dem
 dazugehörigen Answer Set abhängen.
 Die drei Regeln $c_2(r, r')$, $c_3(r, r')$ und $c_4(r, r')$ spezifizieren die
-paarweise Abhängigkeit von von Regeln in betracht auf die gegebene
+paarweise Abhängigkeit von Regeln in betracht auf die gegebene
 Präferenzordnung. Für jedes Paar an Regeln $r, r'$ mit $n_r \prec n_{r'}$ wird
 $ok'(n_r, n_{r'})$ erreicht, immer dann wenn $n_r \prec n_{r'}$ nicht hält oder
 wenn entweder $ap(n_{r'})$ oder $bl(n_{r'})$ war ist. Dies erlaubt es $ok(n_r)$
