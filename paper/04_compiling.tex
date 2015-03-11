@@ -1,4 +1,5 @@
 \section{Compiling order preservation}
+\label{sec:order}
 
 Eine Übersetzung eines geordneten logischen Programmes $(\Pi, <)$ in ein
 Standard logisches Programm $\Pi'$ wurde in \cite{delgrande2000logic} entwickelt.
@@ -19,6 +20,7 @@ allen \emph{order preserving answer sets} von $\Pi$ entsprechen.
         \item[(b)] $body^-(r') \cap \{head(r_j)~|~j<i\} \not = \emptyset$
       \end{itemize}
   \end{itemize}
+  \label{def:2}
 \end{definition}
 
 Die Bedingung 0 macht die Eigenschaft der \emph{groundedness} explizit.\\
@@ -106,6 +108,7 @@ ein Standard Programm $\Gamma(\Pi)$ über $L^+$ wie folgt dar.
       as(r, r'): && \neg (n_{r'} \prec n_{r}) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} n_r \prec n_{r'}
     \end{align*}
   \end{minipage}
+  \label{def:3}
 \end{definition}
 
 Sollte $\Pi'$ ein dynamisch geordnetes Programm sein welches $(\Pi, <)$ umfasst,

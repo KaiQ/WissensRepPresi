@@ -1,2 +1,109 @@
 \section{Synthesis}
 
+In den Kapiteln \ref{sec:fixpoint} und \ref{sec:order} sind drei verschiedene
+Verfahren zur Charakterisierung von \emph{answer sets} gezeigt wurden.
+Trotz der unterschiedlichen Herangehensweisen wurden ähnliche
+\emph{answer sets} ausgewählt.
+
+\subsection{D-preference}
+Für die \emph{D-preference} wird eine \emph{fixpoint} Definition gebildet.
+Hierfür wird von einer bijunktiven Abbildungsregel $rule(\cdot)$ von
+Regelköpfen zu Regeln $rule(headr)) = r$ ausgegangen, entsprechend
+$rule({head(r)~|~r \in R}) = R$. Solche Abbildungen können in einer
+disjunktiven Form durch charakterisierung verschiedener Aufkommen
+von Literalen definiert werden.
+
+\begin{definition}
+  Let $(\Pi, <)$ be an ordered logic program and let $X$ be a set of literals.
+  We define:\\
+  \begin{equation*}
+    \begin{split}
+      X_0 & = \emptyset\hspace*{0.3cm} \text{~and for~} i \geq 0 \\
+      X_{i+1} & = X_i \cup \{ head(r)~| \\
+        & \hspace*{0.4cm}\left. \begin{aligned}
+          I. &\hspace*{0.2cm} r \in \Pi \text{~is active wrt~} (X_i, X) \text{~and} \\
+          II. &\hspace*{0.2cm} \text{there is no rule~} r' \in \Pi \text{~with~} r < r'
+          \text{~such that} \\
+          & \hspace*{0.2cm} \begin{aligned}
+            (a) &\hspace*{0.2cm} r' \text{~is active wrt~} (X, X_i) \text{~and} \\
+            (b) &\hspace*{0.2cm} r' \not\in rule(X_i)
+          \end{aligned}
+        \end{aligned}
+      \right \}
+    \end{split}
+  \end{equation*}
+  Then, $C^D_{(\Pi, <)}(X) = \bigcup_{i\geq 0} X_i$ if $\bigcup_{i\geq 0} X_i$ is
+  consistent. \\Otherwise, $C^D_{(\Pi, <)}(X) = Lit$.
+  \label{def:fix_d}
+\end{definition}
+
+Der Unterschied zwischen Definition \ref{def:fix_d} und Definition \ref{def:1}
+liegt in Punnkt IIb. Die \emph{D-preference} verlangt das eine höherwärtige
+Regel vorher effektiv angewendet wurden ist, wobei bei der \emph{W-preference}
+nur der Kopf der Regel präsent sein muss, ungeachtet dessen von welcher Regel
+dieser geliefert wurde.\\
+Dies demonstriert das Programm $(\Pi_{\ref{example:pi3}}, <)$
+
+\begin{example}[$\Pi_{\ref{example:pi3}}, <$]
+  \begin{align*}
+    r_1: && a \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} not~b &  r_2 < r_1\\
+    r_2: && b \hspace*{0.2cm}&\leftarrow\\
+    r_3: && a \hspace*{0.2cm}&\leftarrow
+  \end{align*}
+  \label{example:pi3}
+\end{example}
+
+Es existiert nur ein \emph{W-preferred} \emph{answer set} $\{a, b\}$ und kein
+\emph{D-preferred}. Das selbte trifft zu wenn bei Programm \ref{example:pi3}
+die Regel $r$ durch $r':~a\leftarrow b$ ersetzt wird.
+
+
+\subsection{W-preference}
+Eine \emph{W-preference} kann im Ausdruck einer \emph{order preserving}
+Charakterisiert werden.
+
+\begin{definition}
+  Let $(\Pi, <)$ be a statically ordered program and let X be an answer set of $\Pi$.
+  Then, X is called $<^W$-preserving, if there exists an enumeration
+  $\langle r_i \rangle_{i \in I}$~of~$\Gamma_{\Pi}^X$ such that for every $i, j \in I$
+  we have that:
+  \begin{itemize}
+    \item[0.] 
+      \begin{itemize}
+        \item[(a)] $body^+(r_i) \subseteq \{ head(r_j)~|~j<i\}$ or
+        \item[(b)] $head(r_i) \in \{ head(r_j)~|~j<i\}$; and
+      \end{itemize}
+    \item[1.] if $r_i < r_j$, then $j<i$; and \\
+    \item[2.] if $r_i < r'$ and $r' \in \Pi \backslash \Gamma_{\Pi}^X$, then
+      \begin{itemize}
+        \item[(a)] $body^+(r') \not \subseteq X$ or
+        \item[(b)] $body^-(r') \cap \{head(r_j)~|~j<i\} \not = \emptyset$ or
+        \item[(c)] $head(r') \in \{head(r_j)~|~j<i\}$
+      \end{itemize}
+  \end{itemize}
+\end{definition}
+
+Der hauptsächliche Unterschied deses Konzeptes der \emph{order preserving} zum
+originalen besteht in der abgeschwächten Darstellung der \emph{groundedness}.
+Die beinhaltet die Regeln in $\Gamma^{X}_{\Pi}$ (über Bedingung 0b) als auch jene
+aus $\Pi \backslash \Gamma^{X}_{\Pi}$. Der Rest der Definition unterscheidet sich
+nicht von Definition \ref{def:2}.\\
+Beispielsweise wird das \emph{answer set} $\{a, b\}$ aus Beispiel
+\ref{example:pi3} durch die $<^W$-preserving Regelsequenz
+$\langle r_3, r_2 \rangle$ erzeugt. hierbei ist zu beachten, dass $r_1$ die
+Bedingung 2c erfüllt, jedoch nicht 2a noch 2b.\\
+Diese abgeschwächten Darstellung der \emph{groundedness} kann einfach in die
+Umwandlung von Definition \ref{def:3} integriert werden.
+
+\begin{definition}
+  Given the same prerequisites as in definition \ref{def:3}.
+  Then, the logic program $\mathcal{T}^W(\Pi)$ over $L^+$ is defined as\\
+  $\mathcal{T}^W(\Pi) = \bigcup_{r \in \Pi}\tau(r) \cup \{c_5(r, r')~|~r, r' \in \Pi\}$
+  , where
+    \begin{align*}
+      c_5(r, r'): && ok'(n_r, n_{r'}) \hspace*{0.2cm}&\leftarrow \hspace*{0.2cm} (n_r \prec n_{r'}), head(r')
+    \end{align*}
+\end{definition}
+
+Der Sinn von $c_5(r, r')$ ist es Regeln des Präferenz Prozesses auszuschließen,
+nachdem der Kopf hinzugefügt wurde.
