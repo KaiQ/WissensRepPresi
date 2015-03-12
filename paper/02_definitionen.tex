@@ -1,38 +1,43 @@
 \section{Definitionen}
 
+
+\subsection{Negation-Definition}
+
 Als erstes möchten wir die verwendeten zwei Negationen einführen.
-Die starke Negation (klassische Negation) mit dem Symbol \glqq $\neg$\grqq~ und die
-schwache Negation (negation as failure) mit dem Symbol \glqq $not$\grqq.
+Die starke Negation (klassische Negation) mit dem Symbol $\neg$ und die
+schwache Negation (negation as failure) mit dem Symbol $not$.
 Bei unvollständigem Wissen über einen Fakt liefert die starke Negation
-eine negative Antwort während die schwache Negation eine positive Antwort liefern würde.
-%TODO ausführlicher busfahrer beispiel siehe brewka paper
-Zum Beispiel, wenn kein Wissen über einen Zug vorliegt, dürfte man
-bei \glqq $cross rail~\leftarrow~\neg~train$\grqq~ die Schienen nicht überqueren,
-da man nichts über einen Zug weiß. Wohingegen bei $cross~\leftarrow~not~train$
-eine überquerung erlaubt wäre.\\
+eine negative Antwort während die schwache Negation eine positive Antwort liefern würde.\\
 
-Als nächstes möchten wir Literale \glqq $L$\grqq~ verwenden.
-Diese sind Ausdrücke der From \glqq $A$\grqq~ und \glqq $\neg~A$\grqq.
-Wobei \glqq $A$\grqq~ ein Atom einer aussagenlogischen Sprache ist.
+Zum Beispiel, wenn eine Bus einen Bahnübergang überqueren möchte und dies nur unter der Bedingung geschehen soll das kein Zug herangefahren kommt. Wenn man keine Informationen über einen heranfahrenden Zug hat, dies seien die Zeiten wann ein Zug den Bahnübergang benutzt. So sollte eine Regel die $nagation as failure$ Notation benutzten ($Bus~kann~fahren~\leftarrow~not~Zug~kommt$) aussagen das es okey ist die Bahnschienen zu überqueren wenn man keine Informationen über einen kommenden Zug hat. In der starken Negation ($Bus~kann~fahren~\leftarrow~\neg~Zug~kommt$) ist es nur okay zufahren wenn man explizite Informationen über die Ankunftszeiten des Zuges hat.
+
+
+\subsection{Literale-Definition}
+
+Als nächstes möchten wir Literale $L$ verwenden.
+Diese sind Ausdrücke der From $A$ und $\neg~A$.
+Wobei $A$ ein Atom einer aussagenlogischen Sprache ist.
 Des weiteren darf es nur eine endliche Menge dieser Atome geben.
-Die Menge aller in einem Logikprogramm \glqq $\Pi$\grqq~ verwendeten Literale
-bezeichnen wir mit dem Symbol \glqq $Lit$\grqq.\\
+Die Menge aller in einem Logikprogramm $\Pi$ verwendeten Literale
+bezeichnen wir mit dem Symbol $Lit$.
 
-Eine Regeln \glqq $r$\grqq~ ist ein Ausdruck der From
+
+\subsection{Regeln-Definition}
+
+Eine Regeln $r$ ist ein Ausdruck der From
 
 \begin{center}
 	$r~=~L_0~\leftarrow~L_1,...,~L_m,~not~L_{m+1},...,~not~L_n$\\
 \end{center}
 
 mit $n~\geq~m~\geq~0$ und jedes $L_i$ sei ein Literal.
-Das Literal $L_0$ sei der Kopf der Regel mit dem Symbol \glqq $head(r)$\grqq,
-also $head(r)~=~L_0$. Der \glqq $body(r)$\grqq~ seien alle Literale mit
-$L_i~und~i~=~1~bis~n$, also die Regel ohne Kopf. Der \glqq $body^+(r)$\grqq~
-seien alle Literale mit $L_i~und~i~=~1~bis~m$, also alle Literale denen kein $not$
-vorangestellt wurde. Der \glqq $body^-(r)$\grqq~ seien alle Literale mit
-$L_i~und~i~=~m~+~1~bis~n$\grqq, also alle Literale der Regel denen
+Das Literal $L_0$ sei der Kopf der Regel mit dem Symbol $head(r)$,
+also $head(r)~=~L_0$. Der $body(r)$ seien alle Literale mit
+$L_i~und~i~=~1~bis~n$, also die Regel ohne Kopf. Der $body^+(r)$ seien alle Literale mit $L_i~und~i~=~1~bis~m$, also alle Literale denen kein $not$
+vorangestellt wurde. Der $body^-(r)$ seien alle Literale mit
+$L_i~und~i~=~m~+~1~bis~n$, also alle Literale der Regel denen
 ein $not$ vorangestellt ist.
-Eine Regel \glqq $r^+$\grqq~ bezeichnen wir als \glqq Basic\grqq~ genau dann wenn
+Eine Regel $r^+$ bezeichnen wir als $basic$ genau dann wenn
 $m~=~n$ gilt. Es gibt kein Literal dem $not$ voransteht beziehungsweise es
 existiert nur ein $body^+(r)$ und der $body^-(r)$ sei leer 
 
@@ -41,18 +46,19 @@ existiert nur ein $body^+(r)$ und der $body^-(r)$ sei leer
 \end{center}	
 
 Sei $n~=~0$, also der $body(r)$ leer beziehungsweise $head(r)~=~r$,
-so ist \glqq $r$\grqq~ ein Fakt. Des weiteren seien \glqq R\grqq~ die Menge
-aller Regeln. Man kann aus einer Regel durch Reduktion eine Basic-Regel
+so ist $r$ ein Fakt. Des weiteren seien $R$ die Menge
+aller Regeln. Man kann aus einer Regel durch Reduktion eine $basic$-Regel
 erhalten. Diese ist definiert durch :
+
 \begin{center}
   $reduct(r)~=~r^+~=~head(r)~\leftarrow~body^+(r)$.\\
 \end{center}
 
-Ein \glqq general logic program\grqq~ ($\Pi$)  ist eine Endliche Ansammlung von
+Ein $general logic program$ ($\Pi$)  ist eine Endliche Ansammlung von
 Regeln $R~=~r_j$ mit $j~=~1$ bis $x~|~x~\in~\mathbb{N}$ der Form\\
 $r_i~=~A_0~\leftarrow~A_1,...,~A_m,~not~A_{m+1},...,~not~A_n$. Bei dem gilt
 $n~\geq~m~\geq~0$ und jedes $A_i$ ist ein Atom.
-Ein \glqq extended logic program\grqq~ ($\Pi$) ist eine Endliche Ansammlung
+Ein $extended logic program$ ($\Pi$) ist eine Endliche Ansammlung
 von Regeln $r$ in der Form $\Pi~=~~r_j~mit$
 
 \begin{center}
@@ -62,21 +68,23 @@ von Regeln $r$ in der Form $\Pi~=~~r_j~mit$
 Bei dem gilt $j~=~1~bis~x~und~x~\in~\mathbb{N}$ sowie $n~\geq~m~\geq~0$ und
 jedes $L_i$ ist ein Literal ($A$ oder $\neg A$).\\
 
-Ein Logikprogramm ist \glqq Basic\grqq~ genau dann wenn es nur
-\glqq Basic-Regeln\grqq~ ($r^+$) enthält. Also im \glqq $body(r)$\grqq~
-kein \glqq $not$\grqq~ enthalten ist. Aus einem nicht Basic-Logikprogramm kann
-man über Reduktion ein Basic-Logikprogramm erhalten. Dies ist definiert durch
+
+\subsection{Logikprogramme-Definition}
+
+Ein Logikprogramm ist $basic$ genau dann wenn es nur 
+$basic-Regeln$ ($r^+$) enthält. Also im $body(r)$ kein $not$ enthalten ist. Aus einem nicht $basic$-Logikprogramm kann
+man über Reduktion ein $basic$-Logikprogramm erhalten. Dies ist definiert durch
 $reduct(\Pi)~=~\Pi^+~=~r^+(\Pi)$. \\
   
 Eine Reduktion über eine Menge $X$ ist auch möglich.
 Sie wird mit $\Pi^X$ bezeichnet und ist durch
 $\Pi^X~=\{r^+~|~r~\in~\Pi~and~body^-(r)~\cap~X~=~\emptyset \}$ definiert. \\
 
-Sei $X$ eine Menge von Literalen eines Basic-extended-Logikprogramm $\Pi$.
+Sei $X$ eine Menge von Literalen eines $basic$-extended-Logikprogramm $\Pi$.
 So gilt:
 
 \begin{itemize}
-	\item $X$ ist \glqq defeated\grqq~ genau dann wenn gilt
+	\item $X$ ist $defeated$ genau dann wenn gilt
     $body^-(r)~\cap~X~=~\emptyset$
 	\item $X$ ist $logically~closed$ genau dann wenn sie konsistent ist oder
     $Lit$ entspricht.	
@@ -95,10 +103,19 @@ als auch $closed~under~a~basic~program~\Pi$ ist. Das heißt wenn $Cn(\Pi^X)=X$
 so ist $X$ das Answer-Set von $\Pi$. Das heißt auch das wir uns nur
 mit Konsistenten Answer-Sets befassen wollen.\\
 
+Ein (statisch) geordnetes Logikprogramm ist ein Paar aus $(\Pi,<)$.
+Wobei $\Pi$ ein extended Logikprogramm ist und $<~\subseteq~\Pi~x~\Pi$ ist
+eine irreflexive und transitive Relation. Das heißt das kein Element in Relation
+zu sich selbst steht zum Beispiel : $r_1~<~r_2~ und~r_2~<~r_1$, sowie wenn
+gilt $r_1~<~r_2$ und $r_2~<~r_3$ so gilt auch $r_1~<~r_3$.
+In einem $\Pi$ mit zwei Regeln $r_1,~r_2~\in~\Pi$ sagt die Relation
+$r_1~<~r_2$ aus, dass $r_2$ eine höhere Priorität hat als $r_1$.
+
+
 \subsection{Answer-Sets nach Gelfond, Lifschitz}
 
-Lasse $\Pi$ ein Basic extended Logikprogramm und $Lit$ die Menge von
-ground Literalen der Sprache von $\Pi$ sein\cite{GelfondLifschitz1991}. So ist das Answer-Set
+Lasse $\Pi$ ein $basic-extended$ Logikprogramm und $Lit$ die Menge von
+$ground$ Literalen der Sprache von $\Pi$ sein\cite{GelfondLifschitz1991}. So ist das Answer-Set
 von $\Pi$ die kleinste Untermenge $S~=~\alpha(\Pi)$ von $Lit$ genau dann wenn:
 
 \begin{itemize}
@@ -114,33 +131,11 @@ eines Logikprogramms $\Pi$ ist:
 \end{center}
 
 
-begin TODO \\
+\subsection{Fixpunkte-Definition}
 
-Des weiteren wird Definiert das $C_\Pi(X)~=~Cn(\Pi^x)$ ist.
-Da der Operator $C_\Pi$ nicht monoton ist, muss er zwei mal ausgeführt werden.
-Das heißt $A_\Pi~=~C_\Pi(C_\Pi(X))$ ist monoton.\\
-
-Brewka
-Das ist zugegebenermaßen recht knapp erklärt. Man testet, ob X answer 
-set eines Programmes Pi ist, indem man $Pi^X$ bildet, also das X reduct 
-von Pi, dann die Konsequenzen des reduzierten Programms mit X 
-vergleicht. Man kann das Ganze als Operator $C_Pi$ betrachten, der X auf 
-die Menge der Konsequenzen von $Pi^X$ abbildet. Dann sind answer sets 
-gerade die Fixpunkte des Operators $C_Pi$. Andere Leute haben aber auch 
-andere Semantiken untersucht, die auf verschiedenen Fixpunkten des 
-Operators $A_Pi$ beruhen, den man bekommt, wenn man $C_Pi$ zweimal 
-hintereinander anwendet. Diese Fixpunkte heißen alternating fixpoints.
-\\
-
-end TODO\\
-
-
-
-
-Ein (statisch) geordnetes Logikprogramm ist ein Paar aus $(\Pi,<)$.
-Wobei $\Pi$ ein extended Logikprogramm ist und $<~\subseteq~\Pi~x~\Pi$ ist
-eine irreflexive und transitive Relation. Das heißt das kein Element in Relation
-zu sich selbst steht zum Beispiel : $r_1~<~r_2~ und~r_2~<~r_1$, sowie wenn
-gilt $r_1~<~r_2$ und $r_2~<~r_3$ so gilt auch $r_1~<~r_3$.
-In einem $\Pi$ mit zwei Regeln $r_1,~r_2~\in~\Pi$ sagt die Relation
-$r_1~<~r_2$ aus, dass $r_2$ eine höhere Priorität hat als $r_1$.
+Sei X ein $Answer-Set$ von $\Pi$ so ist das $X$-Reduckt mit $\Pi^X)$. 
+Dann werden die Konsequenzen des reduzierten Programms mit X verglichen. 
+Dies betrachten wir als dem Operator $C_\Pi(X)$. Diese Answer-Sets sind also die Fixpunkte von $C_\Pi$. 
+Da X eine $Answer-Set$ ist gilt $C_\Pi(X)~=~Cn(\Pi^x)$. 
+Da $C_\Pi$ nicht monoton ist, muss man ihn zwei mal Ausführen um einen monotonen Operator zu erhalten. Diesen neuen Operator bezeichnen wir mit $A_\Pi~=~C_\Pi(C_\Pi(X))$. 
+Diese $A_\Pi$ heißen $alternating fixpoints$, diese sind auch für andere Semantiken definiert wurden.

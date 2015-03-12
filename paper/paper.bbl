@@ -4,6 +4,11 @@
 Schaub, T., Wang, K.:
 \newblock A comparativ study of logic programs with preference
 
+\bibitem{GelfondLifschitz1991}
+Gelfond, M., Lifschitz, V.:
+\newblock Classical negation in logic programs and disjunctive databases.
+\newblock (1991)
+
 \bibitem{wang2000alternating}
 Wang, K., Zhou, L., Lin, F.:
 \newblock Alternating fixpoint theory for logic programs with priority.
